@@ -131,7 +131,7 @@ export async function getStudentTimeline(
 
   const url = apiUrl(`api/instructor/assignments/${assignmentId}/students/${studentId}/timeline${
     params.toString() ? `?${params.toString()}` : ''
-  }`
+  }`)
   const response = await fetchWithAuth(url)
   if (!response.ok) {
     throw new Error(`Failed to fetch timeline: ${response.statusText}`)

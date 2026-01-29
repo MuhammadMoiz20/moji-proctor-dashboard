@@ -588,7 +588,7 @@ export default function StudentDetailPage() {
                       <Calendar className="h-4 w-4" />
                       <span>{format(parseISO(signal.ts), 'PPpp')}</span>
                     </div>
-                    {signal.payload && (
+                    {signal.payload && typeof signal.payload === 'object' ? (
                       <div className="mt-2">
                         <details className="text-sm">
                           <summary className="cursor-pointer text-slate-400 hover:text-white">
@@ -599,7 +599,7 @@ export default function StudentDetailPage() {
                           </pre>
                         </details>
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>
