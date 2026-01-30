@@ -5,7 +5,13 @@ export const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 // Helper to construct full API URLs
 export function apiUrl(path: string): string {
-  // Remove leading slash if present to avoid double slashes
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path
-  return API_BASE_URL ? `${API_BASE_URL}/${cleanPath}` : `/${cleanPath}`
+  const cleanPath = path.startsWith('/') ? path : `/${path}`
+  
+  if (!API_BASE_URL) {
+    return cleanPath
+  }
+  
+  // Remove trailing slash from base URL to avoid double slashes
+  const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL
+  return `${baseUrl}${cleanPath}`
 }
